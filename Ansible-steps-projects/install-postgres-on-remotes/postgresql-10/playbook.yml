@@ -1,0 +1,11 @@
+- name: Config postgresql version 13
+  hosts: all
+  vars:
+    postgresql_version: "13"
+
+  tasks:
+  - name: Configure postgresql using role
+    import_role:
+      name: linux-system-roles.postgresql
+    become: yes
+    become_user: root

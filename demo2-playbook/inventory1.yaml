@@ -1,0 +1,12 @@
+all:
+  children:
+    common:
+      children:
+        webserver:
+          hosts:
+           server2:
+        dbserver:
+          hosts:
+           server3:
+          
+   

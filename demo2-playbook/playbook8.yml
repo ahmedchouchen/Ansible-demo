@@ -1,0 +1,14 @@
+- name: mom premier playbook
+  hosts: all
+  remote_user: root
+  become_user: yes
+  tasks:
+  - name: test connection
+    ping:
+      
+  - name: delete the directory /1/2/3/ from /root/tunisie/1/2/3/ 
+    file:
+       path: "/root/tunisie/"
+       state: absent
+       
+      

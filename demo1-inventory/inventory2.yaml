@@ -1,0 +1,18 @@
+all:
+  children:
+    common:
+      children:
+        webserver:
+          hosts:
+           server2:
+
+        dbserver:
+          hosts:
+            server3:
+            server4:
+                 var1: "server4"
+    monitoring:
+      children:
+        webserver:
+        dbserver:
+

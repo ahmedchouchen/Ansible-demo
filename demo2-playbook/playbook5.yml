@@ -1,0 +1,17 @@
+- name: mom premier playbook
+  hosts: all
+  remote_user: root
+  become_user: yes
+  tasks:
+  - name: test connection
+    ping:
+      
+  - name: create file in  directory recurse
+    file:
+       path: "/root/tunisie/1/2/3/file.txt"
+      
+       state: touch
+       owner: root
+       group: root 
+       mode: 0777 
+      

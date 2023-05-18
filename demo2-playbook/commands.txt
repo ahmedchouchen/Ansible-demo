@@ -1,0 +1,1 @@
+ansible-playbook -i inventory1.yaml playbook1.yml

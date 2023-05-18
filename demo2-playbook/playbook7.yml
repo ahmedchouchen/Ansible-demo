@@ -1,0 +1,17 @@
+- name: mom premier playbook
+  hosts: all
+  remote_user: root
+  become_user: yes
+  tasks:
+  - name: test connection
+    ping:
+      
+  - name: création d'un lien symbolique  (noublier pas de faire shell "ls symlink"
+    file:
+       src: "/root/tunisie/1/2/3/"
+       dest: "/root/symlink"
+       state: link
+       owner: root
+       group: root 
+       mode: 0777 
+      

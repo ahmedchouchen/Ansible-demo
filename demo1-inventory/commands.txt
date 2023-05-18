@@ -1,0 +1,55 @@
+################################### les  variables ############################################
+vi /etc/hosts 
+192.168.56.9  server2
+192.168.56.8  server3
+------------------------------------------------------------------------------
+ansible -i "server2," all -b -e  "var1=ahmed"  -m debug  -a 'msg={{ var1}}'
+------------------------------------------------------------------------------
+all:
+  children:
+    common:
+      children:
+        webserver:
+          hosts:
+           server[2:3]:
+          vars:
+            var1: "webserver"
+        dbserver:
+          hosts:
+            server2:
+            server3:
+                 var1: "server2"
+          vars:
+            var1: "dbserver"
+    monitoring:
+      children:
+        webserver:
+        dbserver:
+------------------------------------------------------------------------------
+mkdir group_vars 
+vi dbserver.yml  var1: "postgres_dbserver"
+vi webserver.yml var1: "php_webserver"
+ansible -i inventory.yaml  all   -m debug  -a 'msg={{ var1}}'
+-------------------------------------------------------------------------------
+nb:
+mkdir group_vars/webserver
+mv group_vars/webserver.yml group_vars/webserver/variable.yml
+mkdir  
+mv group_vars/dbserver.yml group_vars/dbserver/variable.yml
+touch group_vars/webserver/vault.yml
+*************************
+mkdir host_vars
+mkdir host_vars/server4
+vi host_vars/server4/variable.yml
+--------------------------------------------------------------
+mkdir group_vars/all
+vi group_vars/all/variable.yml  var1: "all"
+ansible -i inventory3.yaml  all   -m debug  -a 'msg={{ var1}}'
+-------------------------------------------------------------------
+rm -rf group_vars/webserver/  group_vars/dbserver/  host_vars/
+####################################################################################
+ansible-inventory -i inventory3.yaml --list
+ansible-inventory -i inventory3.yaml --list --yaml
+ansible-inventory -i inventory3.yaml --list --export
+ansible-inventory -i inventory3.yaml  --graph
+ansible-inventory -i inventory3.yaml  --graph  --vars

@@ -1,0 +1,15 @@
+- name: mom premier playbook
+  hosts: all
+  remote_user: root
+  become_user: yes
+  tasks:
+  - name: test connection 
+    ping:
+      
+  - name: change owner and group and privilèges (n'oublier pas  de tester avec la commande  shell ""stat") 
+    file:
+       path: "/root/tunisie"
+       state: directory 
+       owner: root
+       group: root
+       mode : 0777

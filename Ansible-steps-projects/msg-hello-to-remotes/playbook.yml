@@ -1,0 +1,5 @@
+- hosts: MACHINE_NAME
+  tasks:
+     - name: Say hello
+       debug:
+          msg: 'Hello, World'
